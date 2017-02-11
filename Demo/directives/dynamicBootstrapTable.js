@@ -5,8 +5,8 @@ app.directive("bootstrapTable", ['$uibModal', '$timeout',
             restrict: "E",
             templateUrl: "templates/dynamicBootstrapTable.html",
             link: function(scope, element, attrs) {
-
                 var $table = $('#GridTable');
+                scope.Datatableshow = true;
 
                 function rowStyle() {
                     return false;
@@ -19,8 +19,6 @@ app.directive("bootstrapTable", ['$uibModal', '$timeout',
                             var obj = {};
                             obj.field = item;
                             obj.title = item;
-
-
                             obj.sortable = true;
                             obj.searchable = true;
                             obj.visible = true;
@@ -86,7 +84,7 @@ app.directive("bootstrapTable", ['$uibModal', '$timeout',
                 }
 
                 function BootstrapTableAppend(Array, tableID, revoObjs) {
-                    $('.Datatable').show();
+                    scope.Datatableshow = true;
                     tableID.bootstrapTable('prepend', Array);
                     return false;
                 }

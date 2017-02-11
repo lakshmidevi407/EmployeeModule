@@ -1,35 +1,25 @@
-app.directive("photoAlbum", ['$timeout', 'photoalubum', 'alert', '$uibModal',
-    function(timeout, photoalubum, alerts, uibModal) {
-        //  var modalinstance;
+app.directive("photoAlbum", ['$timeout', 'photoalubum', '$uibModal',
+    function(timeout, photoalubum, uibModal) {
+        var modalinstance;
         return {
             restrict: "E",
             templateUrl: "templates/dynamicPhotoPopup.html",
-            scope: {
-                photocustid: '=',
-
-            },
             link: function(scope, element, attrs) {
                 debugger;
                 scope.slides = [];
-                scope.close = function() {
-                    debugger;
-                    scope.$emit("closemodal");
-                };
-                scope.photoalbum = function() {
-                    photoalubum.getphotoslideimages(83872).then(function(response) {
-                        scope.slides = [];
-                        _.each(response.data, function(item) {
-                            scope.slides.push(item);
-                        });
-                    });
-                };
-
-                scope.$on("photoalbumopen", function(event) {
-                    debugger;
-                    alerts.dynamicpopup("photopopup.html", scope, uibModal);
-                    scope.photoalbum();
+                modalinstance = uibModal.open({
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: "photopopup.html",
+                    scope: scope,
+                    backdrop: 'static'
                 });
-
+                photoalubum.getphotoslideimages(83872).then(function(response) {
+                    scope.slides = [];
+                    _.each(response.data, function(item) {
+                        scope.slides.push(item);
+                    });
+                });
             }
         };
     }

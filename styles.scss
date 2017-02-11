@@ -1,4 +1,5 @@
 $primarycolr:red;
+$uma:3px;
 .class1,
 .class2 {
     color: red;
@@ -71,11 +72,32 @@ a {
 
 .navigation-items a:hover {
     background-color: #222;
+    padding: $uma;
 }
 
-// .divslideshow {
-//     #divlinks a {
-//         color: gray;
-//     }
-//     #divlinks a:hover {}
-// }
+.divslideshow {
+    #divlinks a {
+        color: gray;
+        &:hover {
+            color: red;
+        }
+        &:visited {
+            color: pink;
+        }
+    }
+}
+
+@mixin linx($link, $hover, $active, $visite) {
+    a {
+        color: $link;
+        &:hover {
+            color: $hover;
+        }
+        &:visited {
+            color: $visite;
+        }
+        &:active {
+            color: $active;
+        }
+    }
+}

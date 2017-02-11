@@ -53,6 +53,14 @@ a {
   width: 160px; }
 
 .navigation-items a:hover {
-  background-color: #222; }
+  background-color: #222;
+  padding: 3px; }
+
+.divslideshow #divlinks a {
+  color: gray; }
+  .divslideshow #divlinks a:hover {
+    color: red; }
+  .divslideshow #divlinks a:visited {
+    color: pink; }
 
 /*# sourceMappingURL=styles.css.map */
